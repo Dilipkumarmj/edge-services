@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import reactor.core.publisher.Flux;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,7 +23,7 @@ public class CustomersRestController {
             .stream().map(name -> new Customer(this.id.incrementAndGet(),name)).collect(Collectors.toList());
 
     @GetMapping("/customers")
-    Collection<Customer> get(){
-        return this.customers;
+    Flux<Customer> get(){
+        return Flux.fromIterable(this.customers);
     }
 }
