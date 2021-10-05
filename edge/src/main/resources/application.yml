@@ -1,0 +1,14 @@
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: proxy
+#          predicates:
+#            - Path=/proxy
+#            - Host=**.spring.io
+#          filters:
+#            - AddRequestHeader=Access-Control-Allow-Origin, *
+#            - SetPath=/customers
+#          uri: http://localhost:8080
+server:
+  port: 9999
